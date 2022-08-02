@@ -1,0 +1,9 @@
+# GraphQL schema example
+#
+# https://gqlgen.com/getting-started/
+
+scalar Time
+
+extend type Query {
+	example(tenantIds: [String]!): [Account!]!
+}

@@ -1,0 +1,35 @@
+version: "3"
+services:
+  subgraph-postgres:
+    image: postgres:12.10
+    network_mode: bridge
+    container_name: subgraph-postgres
+    volumes:
+      - subgraph-data:/var/lib/postgresql/data
+    expose:
+      - 5432
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=postgres
+
+  subgraph-app:
+    image: subgraph-app:latest
+    network_mode: bridge
+    container_name: subgraph-app
+    build: .
+    env_file:
+      - .env
+    expose:
+      - 8881
+    ports:
+      - 8881:8881
+    depends_on:
+      - subgraph-postgres
+    links:
+      - subgraph-postgres
+
+volumes:
+  subgraph-data:

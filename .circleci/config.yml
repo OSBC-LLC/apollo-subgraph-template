@@ -17,6 +17,7 @@ jobs:
       - run:
           name: "Run Dagger"
           command: |
+            dagger project update
             dagger do build --log-format plain
 
 workflows:

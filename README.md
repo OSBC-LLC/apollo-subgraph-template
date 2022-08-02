@@ -1,3 +1,5 @@
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/OSBC-LLC/apollo-subgraph-template/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/OSBC-LLC/apollo-subgraph-template/tree/main)
+
 # apollo-subgraph-template
 Template to create a new Apollo subgraph service using Entgo, Gqlgen, and some CI
 

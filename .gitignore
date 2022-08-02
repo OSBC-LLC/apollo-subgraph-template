@@ -16,3 +16,5 @@
 
 .env
 bin/
+cue.mod/pkg
+.env.dagger

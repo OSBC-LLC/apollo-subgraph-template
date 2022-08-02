@@ -6,6 +6,7 @@ Template to create a new Apollo subgraph service using Entgo, Gqlgen, and some C
 - [docker](https://www.docker.com/products/docker-desktop/)
 - [golang](https://go.dev/)
 - [dagger](https://dagger.io/)
+- [golang-ci](https://github.com/golangci/golangci-lint)
 
 ## Common Docs / Links
 - [Entgo ORM](https://entgo.io/)
@@ -19,6 +20,8 @@ Take a look at these files and do any necessary changes to paths, names, or conf
 - docker-compose.psql.yml
 - docker-compose.yml
 - gqlgen.yml
+- cue.mod/module.cue
+- sonar-project.properties
 
 This project template already has two objects: **Account** and **Tenant**. Feel free to remove and delete those files from the `ent/schema/` route.
 This template also includes a custom ID type of UUID located in the same schema directory.
@@ -34,6 +37,15 @@ go generate ./...
 **Build project binary to bin/**
 ```bash
 make build
+```
+
+**Dagger CI commands**
+```bash
+# Init dagger once installed
+dagger project init
+
+# Install all dagger files to /pkg dir
+dagger project update
 ```
 
 **Docker commands**

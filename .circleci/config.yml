@@ -36,6 +36,7 @@ jobs:
       - run:
           name: "Run Dagger Static Check"
           command: |
+            dagger project update
             dagger do staticAnalysis --log-format plain
 
 workflows:

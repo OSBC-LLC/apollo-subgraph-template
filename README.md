@@ -26,6 +26,14 @@ Take a look at these files and do any necessary changes to paths, names, or conf
 - cue.mod/module.cue
 - sonar-project.properties
 
+Run the **init.sh** script to enter in a new module name and make the replacement in all files.
+```bash
+./init.sh
+
+# enter the name of the module:
+github.com/organization/repo-name
+```
+
 This project template already has two objects: **Account** and **Tenant**. Feel free to remove and delete those files from the `ent/schema/` route.
 This template also includes a custom ID type of UUID located in the same schema directory.
 

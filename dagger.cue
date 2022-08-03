@@ -24,9 +24,11 @@ dagger.#Plan & {
 			]
 		}
 		env: {
-			SONAR_HOST_URL:  string | *"https://sonarcloud.io"
-			SONAR_LOGIN:     string | *""
-			GITHUB_HEAD_REF: string | *GITHUB_HEAD_REF
+			SONAR_HOST_URL:    string | *"https://sonarcloud.io"
+			SONAR_LOGIN:       string | *""
+			GITHUB_HEAD_REF:   string | *GITHUB_HEAD_REF
+			GOLANG_CI_VERSION: string | *"1.47.2"
+			GOLANG_CI_TIMEOUT: string | *"2m"
 		}
 	}
 
@@ -49,6 +51,10 @@ dagger.#Plan & {
 						},
 					]
 				}
+			golangci:
+				docker.#Pull & {
+					source: "index.docker.io/golangci/golangci-lint:v\(client.env.GOLANG_CI_VERSION)"
+				}
 		}
 
 		build: go.#Build & {
@@ -65,6 +71,20 @@ dagger.#Plan & {
 					}
 					workdir: "/usr/src"
 					input:   deps.sonarscanner.output
+				}
+			lint:
+				go.#Container & {
+					name:     "golangci_lint"
+					"source": client.filesystem.".".read.contents
+					input:    deps.golangci.output
+					command: {
+						name: "golangci-lint"
+						flags: {
+							run:         true
+							"-v":        true
+							"--timeout": client.env.GOLANG_CI_TIMEOUT
+						}
+					}
 				}
 		}
 	}

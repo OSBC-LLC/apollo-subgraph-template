@@ -16,6 +16,7 @@ type Account struct {
 	ent.Schema
 }
 
+//nolint
 func (Account) isEntity() {}
 
 // Fields of the Account.
@@ -30,8 +31,7 @@ func (Account) Fields() []ent.Field {
 // Edges of the Account.
 func (Account) Edges() []ent.Edge {
 	return []ent.Edge{
-		edge.To("tennants", Tennant.Type).
-			Annotations(entgql.Bind()),
+		edge.To("tennants", Tennant.Type),
 	}
 }
 

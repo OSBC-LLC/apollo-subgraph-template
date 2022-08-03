@@ -16,6 +16,7 @@ type Tennant struct {
 	ent.Schema
 }
 
+//nolint
 func (Tennant) isEntity() {}
 
 // Fields of the Tennant.
@@ -35,7 +36,6 @@ func (Tennant) Edges() []ent.Edge {
 		edge.From("account", Account.Type).
 			Ref("tennants").
 			Field("account_id").
-			Annotations(entgql.Bind()).
 			Unique().
 			Required(),
 	}

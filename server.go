@@ -12,6 +12,7 @@ import (
 	"github.com/99designs/gqlgen/graphql/playground"
 	"github.com/OSBC-LLC/apollo-subgraph-template/ent"
 	"github.com/OSBC-LLC/apollo-subgraph-template/graph"
+	"github.com/newrelic/go-agent/v3/newrelic"
 
 	kit_utils "github.com/sailsforce/gomicro-kit/utils"
 )
@@ -46,10 +47,19 @@ func main() {
 		}
 	}
 
+	// new relic
+	newRelicApp, err := newrelic.NewApplication(
+		newrelic.ConfigAppName(os.Getenv("NEW_RELIC_APP_NAME")),
+		newrelic.ConfigLicense(os.Getenv("NEW_RELIC_APP_LICENSE")),
+	)
+	if err != nil {
+		log.Fatalf("new relic init failed: %v", err)
+	}
+
 	srv := handler.NewDefaultServer(graph.NewSchema(client))
 
 	http.Handle("/", playground.Handler("GraphQL playground", "/query"))
-	http.Handle("/query", srv)
+	http.Handle(newrelic.WrapHandle(newRelicApp, "/query", srv))
 
 	log.Printf("connect to http://localhost:%s/ for GraphQL playground", port)
 	log.Fatal(http.ListenAndServe(":"+port, nil))

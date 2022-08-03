@@ -9,6 +9,7 @@ Template to create a new Apollo subgraph service using Entgo, Gqlgen, and some C
 - [golang](https://go.dev/)
 - [dagger](https://dagger.io/)
 - [golang-ci](https://github.com/golangci/golangci-lint)
+- [ripgrep](https://github.com/BurntSushi/ripgrep)
 
 ## Common Docs / Links
 - [Entgo ORM](https://entgo.io/)

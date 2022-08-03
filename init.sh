@@ -4,4 +4,6 @@ read -p "Enter module name: " VALUE
 echo "replacing 'github.com/OSBC-LLC/apollo-subgraph-template' with:"
 echo "           $VALUE"
 
-sed -i -e "s+github.com/OSBC-LLC/apollo-subgraph-template+$VALUE+g"
+rg github.com/OSBC-LLC/apollo-subgraph-template -l -g '!init.sh' | xargs sed -i -e "s+github.com/OSBC-LLC/apollo-subgraph-template+$VALUE+g"
+
+rm **/**-e

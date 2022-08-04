@@ -76,6 +76,9 @@ make da
 
 **Pre-commit commands**
 ```
+# Install all pre-commit hooks
+pre-commit install
+
 # Force run all pre-commit hooks
 pre-commit run --all-files
 ```

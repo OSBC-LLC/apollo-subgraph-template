@@ -65,7 +65,7 @@ jobs:
       - image: cimg/node:lts
     steps:
       - checkout
-      - run: npm ci
+      - run: npm i
       - snyk/scan
 
 workflows:

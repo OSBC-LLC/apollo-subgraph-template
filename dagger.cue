@@ -27,7 +27,7 @@ dagger.#Plan & {
 			SONAR_HOST_URL:    string | *"https://sonarcloud.io"
 			SONAR_LOGIN:       string | *""
 			GITHUB_HEAD_REF:   string | *GITHUB_HEAD_REF
-			GOLANG_CI_VERSION: string | *"1.47.2"
+			GOLANG_CI_VERSION: string | *"1.47.3"
 			GOLANG_CI_TIMEOUT: string | *"2m"
 		}
 	}

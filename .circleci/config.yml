@@ -1,4 +1,6 @@
 version: 2.1
+orbs: 
+  snyk: snyk/snyk@1.2.3
 
 jobs:
   dagger-build:
@@ -58,9 +60,18 @@ jobs:
             dagger project update
             dagger do staticAnalysis lint --log-format plain
 
+  synk-scan:
+    docker:
+      - image: cimg/node:lts
+    steps:
+      - checkout
+      - run: npm ci
+      - snyk/scan
+
 workflows:
   dagger-workflow:
     jobs:
       - dagger-build
       - dagger-sonarqube
       - dagger-golangci
+      - synk-scan

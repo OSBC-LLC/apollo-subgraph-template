@@ -29,6 +29,7 @@ dagger.#Plan & {
 			GITHUB_HEAD_REF:   string | *GITHUB_HEAD_REF
 			GOLANG_CI_VERSION: string | *"1.47.3"
 			GOLANG_CI_TIMEOUT: string | *"2m"
+			GOLANG_VERSION:    string | *"1.18.4"
 		}
 	}
 

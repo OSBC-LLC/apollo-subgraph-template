@@ -60,13 +60,13 @@ jobs:
             dagger project update
             dagger do staticAnalysis lint --log-format plain
 
-  synk-scan:
-    docker:
-      - image: cimg/node:lts
-    steps:
-      - checkout
-      - run: npm i
-      - snyk/scan
+  #synk-scan:
+    #docker:
+      #- image: cimg/node:lts
+    #steps:
+      #- checkout
+      #- run: npm i
+      #- snyk/scan
 
 workflows:
   dagger-workflow:
@@ -74,4 +74,4 @@ workflows:
       - dagger-build
       - dagger-sonarqube
       - dagger-golangci
-      - synk-scan
+      #- synk-scan
